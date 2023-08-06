@@ -1,0 +1,17 @@
+apiVersion: 'cilium.io/v2'
+kind: CiliumClusterwideNetworkPolicy
+description: 'Default deny and allow egress to kube-dns pod.'
+metadata:
+  name: 'clusterwide-policy-example'
+spec:
+  endpointSelector:
+    matchLabels:
+      group: my-app
+  egress:
+    - toEndpoints:
+        - matchLabels:
+            'k8s:io.kubernetes.pod.namespace': kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: '53'
