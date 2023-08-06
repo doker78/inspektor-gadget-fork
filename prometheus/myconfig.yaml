@@ -1,0 +1,11 @@
+# myconfig.yaml
+metrics_name: guide
+metrics:
+  - name: executed_processes
+    type: counter
+    category: trace
+    gadget: exec
+    labels:
+      - namespace
+      - pod
+      - container
